@@ -1,0 +1,17 @@
+{
+  "name": "red-badger-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Tony Onodi",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc index.ts",
+    "test": "jest --watchAll"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.9",
+    "jest": "^24.1.0",
+    "ts-jest": "^24.0.0",
+    "typescript": "^3.3.3333"
+  }
+}
