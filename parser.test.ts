@@ -1,4 +1,4 @@
-import parser, {
+import parse, {
   tokeniser,
   parseGridString,
   parseRobotOrientation,
@@ -7,7 +7,8 @@ import parser, {
 } from "./parser";
 import { Direction, Instruction } from "./IInput";
 
-const inputString = `5 3
+describe(`tokeniser`, () => {
+  const inputString = `5 3
 1 1 E
 RFRFRFRF
 
@@ -17,17 +18,16 @@ FRRFLLFFRRFLL
 0 3 W
 LLFFFLFLFL`;
 
-const expectedTokeniserOutput = [
-  `5 3`,
-  `1 1 E`,
-  `RFRFRFRF`,
-  `3 2 N`,
-  `FRRFLLFFRRFLL`,
-  `0 3 W`,
-  `LLFFFLFLFL`,
-];
+  const expectedTokeniserOutput = [
+    `5 3`,
+    `1 1 E`,
+    `RFRFRFRF`,
+    `3 2 N`,
+    `FRRFLLFFRRFLL`,
+    `0 3 W`,
+    `LLFFFLFLFL`,
+  ];
 
-describe(`tokeniser`, () => {
   it(`should split string into lines, removing empty lines`, () => {
     expect(tokeniser(inputString)).toEqual(expectedTokeniserOutput);
   });
@@ -108,6 +108,36 @@ describe(`parseRobotLines`, () => {
 
   it(`should throw an error when input ends early`, () => {
     const invalidInput = [`1 1 E`, `RFR`, `3 2 N`];
-    expect(() => parseRobotLines(invalidInput)).toThrow(new Error(`Unexpected end of input.`));
+    expect(() => parseRobotLines(invalidInput)).toThrow(
+      new Error(`Unexpected end of input.`)
+    );
+  });
+});
+
+describe(`parser`, () => {
+  it(`should parse valid input correctly`, () => {
+    const inputString = `5 3
+1 1 E
+RFR
+
+3 2 N
+FLR`;
+    const expectedOutput = {
+      grid: [5, 3],
+      robots: [
+        {
+          position: [1, 1],
+          direction: Direction.E,
+          instructions: [Instruction.R, Instruction.F, Instruction.R],
+        },
+        {
+          position: [3, 2],
+          direction: Direction.N,
+          instructions: [Instruction.F, Instruction.L, Instruction.R],
+        },
+      ],
+    };
+
+    expect(parse(inputString)).toEqual(expectedOutput);
   });
 });
