@@ -5,7 +5,7 @@ import parse, {
   parseRobotInstructions,
   parseRobotLines,
 } from "./parser";
-import { Direction, Instruction } from "./IInput";
+import { Direction, Instruction } from "../Input";
 
 describe(`tokeniser`, () => {
   const inputString = `5 3

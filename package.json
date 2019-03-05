@@ -5,7 +5,7 @@
   "author": "Tony Onodi",
   "license": "MIT",
   "scripts": {
-    "build": "tsc index.ts",
+    "build": "tsc",
     "test": "jest --watchAll"
   },
   "devDependencies": {
@@ -13,5 +13,8 @@
     "jest": "^24.1.0",
     "ts-jest": "^24.0.0",
     "typescript": "^3.3.3333"
+  },
+  "dependencies": {
+    "@types/node": "^11.10.4"
   }
 }

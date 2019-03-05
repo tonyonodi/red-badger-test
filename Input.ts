@@ -6,18 +6,18 @@ export enum Direction {
 }
 
 export enum Instruction {
+  L = -1,
   F,
-  L,
   R,
 }
 
-export interface IRobot {
+export interface Robot {
   position: [number, number];
   direction: Direction;
   instructions: Instruction[];
 }
 
-export interface IInput {
+export interface Input {
   grid: [number, number];
-  robots: IRobot[];
+  robots: Robot[];
 }

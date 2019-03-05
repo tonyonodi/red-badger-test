@@ -1,4 +1,4 @@
-import { Direction, Instruction, IInput, IRobot } from "./IInput";
+import { Direction, Instruction, Input, Robot } from "../Input";
 
 export const tokeniser = (string: string) => {
   return string.split(/\n+/);
@@ -59,8 +59,8 @@ export const parseRobotOrientation = (
 
 export const parseRobotLines = (
   lines: string[],
-  robots: IRobot[] = []
-): IRobot[] => {
+  robots: Robot[] = []
+): Robot[] => {
   if (lines.length === 0) return robots;
 
   const [orientationString, instructionsString, ...remainingLines] = lines;
@@ -68,7 +68,7 @@ export const parseRobotLines = (
   const { position, direction } = parseRobotOrientation(orientationString);
   const instructions = parseRobotInstructions(instructionsString);
 
-  const robot: IRobot = {
+  const robot: Robot = {
     position,
     direction,
     instructions,
@@ -77,7 +77,7 @@ export const parseRobotLines = (
   return parseRobotLines(remainingLines, [...robots, robot]);
 };
 
-export default (inputString: string): IInput => {
+export default (inputString: string): Input => {
   // Because this grammar is very simple we can tokenise by line.
   const [gridString, ...robotLines] = tokeniser(inputString);
   const grid = parseGridString(gridString);
