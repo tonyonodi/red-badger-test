@@ -1,4 +1,4 @@
-# red-badger-test
+# Red Badger Test
 
 This project requires the TypeScript compiler to be installed in order to be built. I have been using `yarn`, but it should be possible to substitute `yarn` for `npm` in the instructions below. You can build it with
 
