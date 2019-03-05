@@ -9,7 +9,7 @@ var Direction;
 })(Direction = exports.Direction || (exports.Direction = {}));
 var Instruction;
 (function (Instruction) {
+    Instruction[Instruction["L"] = -1] = "L";
     Instruction[Instruction["F"] = 0] = "F";
-    Instruction[Instruction["L"] = 1] = "L";
-    Instruction[Instruction["R"] = 2] = "R";
+    Instruction[Instruction["R"] = 1] = "R";
 })(Instruction = exports.Instruction || (exports.Instruction = {}));

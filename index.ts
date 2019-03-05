@@ -1,9 +1,12 @@
+import { readFileSync } from "fs";
+import path from "path";
 import { Input, Direction, Instruction, Robot } from "./Input";
 import parse from "./lib/parser";
 import { add } from "./lib/vector";
 import getNewDirection from "./lib/getNewDirection";
+import outputToString from "./lib/outputToString";
 
-interface Outcome {
+export interface Outcome {
   position: [number, number];
   direction: Direction;
   lost: boolean;
@@ -121,8 +124,11 @@ const inputPath =
   inputIndex >= 0 ? process.argv[inputIndex].split("=")[1] : null;
 
 if (inputPath) {
-  // Read in file
-  // Parse file into input
-  // Run input
+  const fullPath = path.join(__dirname, inputPath);
+  const file = readFileSync(fullPath, "utf8");
+
+  const input = parse(file);
+  const result = runInput(input);
   // Print output
+  console.log(outputToString(result));
 }
